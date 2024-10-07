@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './css/Sidebar.css'
 import { Button } from '@material-ui/core'
 import { Add, Delete, Drafts, ExpandLess, ExpandMore, FindInPage, Inbox, Keyboard, Label, LabelImportant, Send, StarRate, Videocam, WatchLater } from '@material-ui/icons'
 import SidebarOptions from './SidebarOptions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { openSendMessage } from '../features/mailSlice'
-import { inboxTrue, restTrue, sentTrue } from '../features/userSlice'
+import { inboxTrue, restTrue, selectUser, sentTrue } from '../features/userSlice'
+import { db } from '../firebase'
 
 function Sidebar() {
     const [notImportant, setNotImportant] = useState(true)
@@ -14,8 +15,12 @@ function Sidebar() {
     const [snoozed, setSnoozed] = useState(false)
     const [important, setImportant] = useState(false)
     const [sent, setSent] = useState(false)
+    const [emails, setEmails] = useState([]);
+    const [sentEmails, setSentEmails] = useState([]);
     const [drafts, setDrafts] = useState(false)
     const dispatch = useDispatch();
+    const user = useSelector(selectUser);
+
     const myFunc2 = (val) => {
         setIndex(val === 'Inbox');
         if (val === 'Inbox') {
@@ -39,27 +44,45 @@ function Sidebar() {
             setNotImportant(true);
         }
     }
+
+    useEffect(() => {
+        db.collection("emails").orderBy('timestamp', 'desc').onSnapshot(snap => {
+            setEmails(snap.docs.filter(email => (
+                (email.data().from !== user.email) && (email.data().to === user.email)
+            )).map(doc => ({
+                id: doc.id,
+                data: doc.data()
+            })))
+            setSentEmails(snap.docs.filter(email => (
+                (email.data().from === user.email)
+            )).map(doc => ({
+                id: doc.id,
+                data: doc.data()
+            })))
+        })
+    }, [user.email])
+
     return (
         <div className="sidebar">
             <Button startIcon={<Add />} className='compose' onClick={() => dispatch(openSendMessage())}>Compose</Button>
 
             <div onClick={() => myFunc2('Inbox')}>
-                <SidebarOptions Icon={Inbox} title="Inbox" number={224} isactive={index} />
+                <SidebarOptions Icon={Inbox} title="Inbox" number={emails.length} isactive={index} />
             </div>
             <div onClick={() => myFunc2('Starred')}>
-                <SidebarOptions Icon={StarRate} title="Starred" number={500} isactive={shared} />
+                <SidebarOptions Icon={StarRate} title="Starred" number={0} isactive={shared} />
             </div>
             <div onClick={() => myFunc2('Snoozed')}>
-                <SidebarOptions Icon={WatchLater} title="Snoozed" number={452} isactive={snoozed} />
+                <SidebarOptions Icon={WatchLater} title="Snoozed" number={0} isactive={snoozed} />
             </div>
             <div onClick={() => myFunc2('Important')}>
-                <SidebarOptions Icon={LabelImportant} title="Important" number={300} isactive={important} />
+                <SidebarOptions Icon={LabelImportant} title="Important" number={0} isactive={important} />
             </div>
             <div onClick={() => myFunc2('Sent')}>
-                <SidebarOptions Icon={Send} title="Sent" number={254} isactive={sent} />
+                <SidebarOptions Icon={Send} title="Sent" number={sentEmails.length} isactive={sent} />
             </div>
             <div onClick={() => myFunc2('Drafts')}>
-                <SidebarOptions Icon={Drafts} title="Drafts" number={220} isactive={drafts} />
+                <SidebarOptions Icon={Drafts} title="Drafts" number={0} isactive={drafts} />
             </div>
             <SidebarOptions Icon={Label} title="Category" number={22} notImportant={notImportant} />
             <SidebarOptions Icon={Delete} title="[Map]/Trash" number={24} notImportant={notImportant} />

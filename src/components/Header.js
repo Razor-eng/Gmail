@@ -1,4 +1,3 @@
-import React from 'react'
 import './css/Header.css'
 import { Avatar, IconButton } from '@material-ui/core'
 import ReorderIcon from '@material-ui/icons/Reorder'

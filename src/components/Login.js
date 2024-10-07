@@ -1,4 +1,3 @@
-import React from 'react'
 import './css/Login.css'
 import { auth, provider } from '../firebase'
 import { signin } from '../features/userSlice'
@@ -18,11 +17,34 @@ function Login() {
             alert(err);
         })
     }
+
     return (
         <div className='login'>
-            <div className="logo">
-                <img src="/gmail.png" alt="" />
-                <button onClick={login} className="login-btn">Login with Google</button>
+            <div className="loginNavbar">
+                <div className="leftLoginNavbar">
+                    <img src="/icon.png" alt="logo" />
+                    <h2>Gmail</h2>
+                </div>
+                <div className="rightLoginNavbar">
+                    <button className='lgScreen'>For work</button>
+                    <button className='signinAccountBtn' onClick={login}>Sign in</button>
+                    <button className='createAccountBtn' onClick={login}>Create an account</button>
+                </div>
+            </div>
+
+            <div className="loginBody">
+                <div className="leftLoginBody">
+                    <h2>Secure, smart, and easy to use email</h2>
+                    <img src="/gmail.png" alt="" className='loginImage' />
+                    <p>Get more done with Gmail. Now integrated with Google Chat, Google Meet, and more, all in one place.</p>
+                    <div className="rightLoginNavbar">
+                        <button className='createAccountBtn' onClick={login}>Create an account</button>
+                        <button className='signinAccountBtn' onClick={login}>Sign in</button>
+                    </div>
+                </div>
+                <div className="rightLoginBody">
+                    <img src="/front.webp" alt="" />
+                </div>
             </div>
         </div>
     )

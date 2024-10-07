@@ -1,5 +1,4 @@
 import { Inbox, LocalOffer, People } from '@material-ui/icons'
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { openPrimary, openPromotions, openSocial, selectPrimary, selectPromotions, selectSocial } from '../features/mailSlice';
 

@@ -2,28 +2,123 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  align-items: center;
-  justify-content: center;
+  width: 100vw;
+  overflow: hidden;
 }
-.logo {
-  background-color: whitesmoke;
-  padding: 100px;
-  max-width: 500px;
+.loginNavbar {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 100px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
-.login img {
-  width: 250px;
-  margin-bottom: 50px;
+.leftLoginNavbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.login-btn {
-  background-color: #4385f5;
-  border: 0;
-  padding: 15px 30px;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 15px;
-  outline: 0;
+.leftLoginNavbar img {
+  width: 30px;
+  height: 30px;
+}
+.leftLoginNavbar h2 {
+  font-weight: 400;
+  color: gray;
+}
+.rightLoginNavbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.rightLoginNavbar button {
+  padding: 12px 26px;
+  color: #4385f5;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 7px;
+  border: 0.5px solid rgb(190, 187, 187);
+  background-color: #fff;
   cursor: pointer;
+}
+.rightLoginNavbar button:hover {
+  opacity: 80%;
+  background-color: #c7d2e4;
+  color: rgb(78, 78, 232);
+  transition: all ease-in 150ms;
+}
+.rightLoginNavbar button:nth-child(1) {
+  border: 0px;
+}
+.createAccountBtn {
+  background-color: #4385f5 !important;
+  color: white !important;
+  border: 0px !important;
+}
+
+.loginBody {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 20px;
+}
+.loginImage {
+  width: 0;
+}
+.leftLoginBody {
+  width: 500px;
+  padding: 0px 100px;
+}
+.leftLoginBody h2 {
+  font-size: 60px;
+  font-weight: 500;
+}
+.leftLoginBody p {
+  font-size: 18px;
+  font-weight: 400;
+}
+.rightLoginBody img {
+  width: 850px;
+}
+
+@media only screen and (max-width: 600px) {
+  .loginNavbar {
+    padding: 0px 10px;
+  }
+  .lgScreen {
+    display: none;
+  }
+  .rightLoginNavbar {
+    gap: 8px;
+  }
+  .rightLoginNavbar button {
+    padding: 14px 14px;
+    font-weight: 600;
+  }
+  .loginBody {
+    margin-left: 3px;
+    margin-top: 20px;
+    align-items: start;
+    justify-content: center;
+  }
+  .leftLoginBody {
+    width: 100vh;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .loginImage {
+    width: 300px;
+  }
+  .leftLoginBody h2 {
+    font-size: 48px;
+  }
+  .leftLoginBody p {
+    font-size: 16px;
+  }
+  .rightLoginBody {
+    display: none;
+  }
 }

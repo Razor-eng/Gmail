@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './css/Compose.css'
 import { ArrowDropDown, AttachFile, Close, Create, Delete, FormatColorText, Height, InsertEmoticon, Link, MoreVert, NoteAdd, PhonelinkLock, Photo, Remove } from '@material-ui/icons'
 import { useDispatch, useSelector } from 'react-redux'
@@ -32,6 +32,7 @@ function Compose() {
             message,
             from: user.email,
             fromName: user.displayName,
+            fromPhotoUrl: user.photoUrl,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
 

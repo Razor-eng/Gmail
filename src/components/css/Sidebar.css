@@ -15,6 +15,7 @@
   font-size: 12px;
   margin: 0;
   margin-left: 25px;
+  margin-top: 20px;
 }
 /* SidebarOptions */
 .options {
@@ -61,4 +62,14 @@
 }
 .hide {
   display: none;
+}
+
+.expand {
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
 }

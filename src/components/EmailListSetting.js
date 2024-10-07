@@ -1,6 +1,5 @@
 import { IconButton } from '@material-ui/core'
 import { ArrowDropDown, CheckBoxOutlineBlank, ChevronLeft, ChevronRight, MoreVert, Refresh } from '@material-ui/icons'
-import React from 'react'
 
 function EmailListSetting() {
     return (
