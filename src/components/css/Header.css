@@ -39,6 +39,10 @@
   width: 30px;
 }
 
+.mobileViewSidebar {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   .header {
     width: 100vw;
@@ -46,7 +50,47 @@
     justify-content: space-between;
     align-items: center;
   }
+  .right .MuiAvatar-root {
+    height: 40px;
+    width: 40px;
+  }
   .search {
     display: none;
+  }
+  .header .hiddenSm {
+    display: none;
+  }
+  .mobileViewSidebar {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: white;
+    z-index: 10000;
+    overflow: hidden;
+  }
+  .mobileViewSidebar .sidebarOptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .mobileViewSidebar .sidebarOptions .options {
+    padding: 20px 120px;
+    > h4 {
+      font-size: 20px;
+    }
+  }
+  .mobileViewSidebar .composeBtn {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobileViewSidebar .area {
+    display: flex;
+    width: 100vw;
+    justify-content: end;
   }
 }

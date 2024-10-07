@@ -100,3 +100,14 @@ textarea {
   background-color: #eee;
   color: #000;
 }
+
+@media only screen and (max-width: 600px) {
+  .Compose {
+    min-width: 100vw;
+    right: 0;
+    bottom: 0;
+  }
+  .compose-footer-right {
+    display: none;
+  }
+}

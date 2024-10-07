@@ -66,13 +66,14 @@ function EmailList() {
                         </div>
                     )
                 ) : (
-                    sentEmails.length > 0 ? (
+                    sent && sentEmails.length > 0 ? (
                         sentEmails.map(({ id, data }) => {
                             return (
                                 < EmailBody key={id} email={data.from} name={data.fromName} subject={data.subject} message={data.message} time={new Date(data.timestamp?.seconds * 1000).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })} photoUrl={data?.fromPhotoUrl} />
                             )
                         })
                     ) : (
+                        sent &&
                         <div className="nodata">
                             <h4>No Sent mails to display</h4>
                         </div>
